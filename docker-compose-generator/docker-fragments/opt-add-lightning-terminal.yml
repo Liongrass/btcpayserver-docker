@@ -27,6 +27,7 @@ services:
       - "--remote.lnd.rpcserver=lnd_bitcoin:10009"
       - "--remote.lnd.macaroonpath=/data/lnd/admin.macaroon"
       - "--remote.lnd.tlscertpath=/data/lnd/tls.cert"
+      - "--autopilot.disable=true"
 
 volumes:
   lnd_lit_datadir:
