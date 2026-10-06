@@ -7,8 +7,6 @@
 . /etc/profile.d/btcpay-env.sh
 
 docker exec btcpayserver_litd litcli \
-    --rpcserver=localhost:8443 \
-    --tlscertpath=/lit/.lit/tls.cert \
-    --macaroonpath="/lit/.lit/$NBITCOIN_NETWORK/lit.macaroon" \
+    --basedir="/lit/ \
     --network="$NBITCOIN_NETWORK" \
     "$@"
