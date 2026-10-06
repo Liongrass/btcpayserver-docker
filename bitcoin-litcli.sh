@@ -1,9 +1,14 @@
 #!/bin/bash
 
-# litd stores its macaroon under a network sub-directory (~/.lit/<network>/lit.macaroon),
-# so litcli has to be told which network this deployment runs on. NBITCOIN_NETWORK is
-# saved in $BTCPAY_ENV_FILE by btcpay_update_docker_env and re-exported from there by
-# the profile script below.
+# litd multiplexes every subserver onto its own TLS port, so litcli is pointed at litd
+# rather than at its standalone default. The fragment keeps each daemon's data under
+# the single /lit volume, and macaroons live in a network sub-directory - hence
+# NBITCOIN_NETWORK, saved in $BTCPAY_ENV_FILE and re-exported by the profile script.
 . /etc/profile.d/btcpay-env.sh
 
-docker exec btcpayserver_litd litcli --network="$NBITCOIN_NETWORK" "$@"
+docker exec btcpayserver_litd litcli \
+    --rpcserver=localhost:8443 \
+    --tlscertpath=/lit/.lit/tls.cert \
+    --macaroonpath="/lit/.lit/$NBITCOIN_NETWORK/lit.macaroon" \
+    --network="$NBITCOIN_NETWORK" \
+    "$@"
