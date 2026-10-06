@@ -9,6 +9,6 @@
 docker exec btcpayserver_litd loop \
     --rpcserver=localhost:8443 \
     --tlscertpath=/lit/.lit/tls.cert \
-    --macaroonpath="/lit/.lit/$NBITCOIN_NETWORK/lit.macaroon" \
+    --macaroonpath="/lit/.loop/$NBITCOIN_NETWORK/loop.macaroon" \
     --network="$NBITCOIN_NETWORK" \
     "$@"
