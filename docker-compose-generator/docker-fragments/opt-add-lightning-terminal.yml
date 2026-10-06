@@ -36,6 +36,7 @@ services:
       - "--faraday.bitcoin.host=bitcoind:43782"
       - "--faraday.bitcoin.user=lnd"
       - "--faraday.bitcoin.passwordfile=/deps/.bitcoin/RPCUsers/lnd"
+      - "--autopilot.disable"
 volumes:
   lnd_lit_datadir:
 secrets:
