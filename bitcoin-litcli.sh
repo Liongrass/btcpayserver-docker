@@ -7,6 +7,6 @@
 . /etc/profile.d/btcpay-env.sh
 
 docker exec btcpayserver_litd litcli \
-    --basedir="/lit/ \
+    --basedir="/lit/" \
     --network="$NBITCOIN_NETWORK" \
     "$@"
